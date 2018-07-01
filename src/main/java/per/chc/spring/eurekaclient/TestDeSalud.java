@@ -2,6 +2,7 @@ package per.chc.spring.eurekaclient;
 
 import com.netflix.appinfo.HealthCheckHandler;
 import com.netflix.appinfo.InstanceInfo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,10 +11,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TestDeSalud implements HealthCheckHandler {
-    private int counter = -1;
+    /**
+     * Manejamos la variable counter desde el archivo de propiedades.
+     * // Gustavo!, porque no puedo hacer cambios en caliente, Me has engañado.
+     */
+    @Value("${application.health.contador}")
+    private int counter;
     @Override
     public InstanceInfo.InstanceStatus getStatus(InstanceInfo.InstanceStatus currentStatus) {
-        counter++;
+     //   counter++;
         switch (counter){
             case 0:
                 return InstanceInfo.InstanceStatus.OUT_OF_SERVICE;
@@ -23,9 +29,8 @@ public class TestDeSalud implements HealthCheckHandler {
                 return InstanceInfo.InstanceStatus.STARTING;
             case 3:
                 return InstanceInfo.InstanceStatus.UNKNOWN;
-            case 4:
+            default:
                 return InstanceInfo.InstanceStatus.UP;
         }
-        return null;
     }
 }
