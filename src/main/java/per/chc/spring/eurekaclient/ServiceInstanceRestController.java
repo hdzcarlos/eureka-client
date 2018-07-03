@@ -17,16 +17,18 @@ public class ServiceInstanceRestController {
     @Autowired
     public DiscoveryClient discoveryClient;
 
+
     /**
      * Recupera y mapea  el property que le hemos dicho que se cargue antes de la aplicacion en el bootstrap.yml
      * Funciona como una ID Name por  donde entramos al servicio.
      * la url de acceso seria http://service-instances/"Lo especificado en el bootstrap.yml"
+     *
      * @param applicationName Nombre que recibe por propiedades.
      * @return retornamos una instancia encontrada en eureka, con el nombre del servicio.
      */
     @RequestMapping("/service-instances/{applicationName}")
     public List<ServiceInstance> serviceInstancesByApplicationName(
-            @PathVariable String applicationName){
+            @PathVariable String applicationName) {
         return this.discoveryClient.getInstances(applicationName);
         /*
          * Log de como se registra en el ecosistema
@@ -34,8 +36,6 @@ public class ServiceInstanceRestController {
          * 2018-07-01 00:30:55.887  INFO 11700 --- [freshExecutor-0] com.netflix.discovery.DiscoveryClient    : The response status is 200
          */
     }
-
-
 
 
 }

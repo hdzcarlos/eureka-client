@@ -17,10 +17,11 @@ public class TestDeSalud implements HealthCheckHandler {
      */
     @Value("${application.health.contador}")
     private int counter;
+
     @Override
     public InstanceInfo.InstanceStatus getStatus(InstanceInfo.InstanceStatus currentStatus) {
-     //   counter++;
-        switch (counter){
+        //   counter++;
+        switch (counter) {
             case 0:
                 return InstanceInfo.InstanceStatus.OUT_OF_SERVICE;
             case 1:
