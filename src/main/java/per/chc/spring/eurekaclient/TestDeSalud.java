@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class TestDeSalud implements HealthCheckHandler {
     /**
      * Manejamos la variable counter desde el archivo de propiedades.
-     * // Gustavo!, porque no puedo hacer cambios en caliente, Me has engañado.
+     *
      */
     @Value("${application.health.contador}")
     private int counter;
